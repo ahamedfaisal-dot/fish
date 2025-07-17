@@ -1,3 +1,4 @@
+import dotenv from 'dotenv';
 import express from 'express';
 import { createServer } from 'http';
 import { fileURLToPath } from 'url';
@@ -7,6 +8,9 @@ import pkg from 'pg';
 import session from 'express-session';
 import ConnectPgSimple from 'connect-pg-simple';
 import cors from 'cors';
+
+// Load environment variables
+dotenv.config();
 
 // Import API routes
 import fishingZonesRouter from './routes/fishing-zones.js';

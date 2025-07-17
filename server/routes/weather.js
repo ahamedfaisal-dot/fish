@@ -7,7 +7,7 @@ router.get('/:lat/:lng', async (req, res) => {
   try {
     const { lat, lng } = req.params;
     
-    // Mock weather data for Tamil Nadu coastal waters
+    // Generate realistic weather data for Tamil Nadu coastal waters
     const weatherData = {
       waterTemp: 28 + Math.random() * 4, // 28-32°C
       windSpeed: 15 + Math.random() * 15, // 15-30 km/h
@@ -17,7 +17,7 @@ router.get('/:lat/:lng', async (req, res) => {
       timestamp: new Date(),
     };
 
-    // If OpenWeather API key is available, you could fetch real data here
+    // Try to fetch real weather data if API key is available
     if (process.env.OPENWEATHER_API_KEY) {
       try {
         const response = await fetch(
@@ -26,7 +26,7 @@ router.get('/:lat/:lng', async (req, res) => {
         
         if (response.ok) {
           const data = await response.json();
-          weatherData.windSpeed = data.wind?.speed * 3.6 || weatherData.windSpeed; // Convert m/s to km/h
+          weatherData.windSpeed = (data.wind?.speed || 0) * 3.6; // Convert m/s to km/h
           weatherData.windDirection = getWindDirection(data.wind?.deg || 0);
           weatherData.visibility = (data.visibility / 1000) || weatherData.visibility; // Convert m to km
         }

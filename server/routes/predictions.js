@@ -1,18 +1,69 @@
 import express from 'express';
-import { db } from '../index.js';
-import { fishingZones, catchReports } from '../../shared/schema.js';
-import { sql } from 'drizzle-orm';
 
 const router = express.Router();
+
+// Mock fishing zones for predictions
+const mockZones = [
+  {
+    id: 1,
+    name: "Chennai Deep Waters",
+    latitude: 13.0827,
+    longitude: 80.3707,
+    radius: 5000,
+    confidence: 0.85,
+    species: ["Seer Fish", "Tuna", "Sailfish"],
+    depth: 80
+  },
+  {
+    id: 2,
+    name: "Mamallapuram Reef",
+    latitude: 12.6167,
+    longitude: 80.2425,
+    radius: 3000,
+    confidence: 0.78,
+    species: ["Red Snapper", "Grouper", "Pomfret"],
+    depth: 45
+  },
+  {
+    id: 3,
+    name: "Rameswaram Banks",
+    latitude: 9.2876,
+    longitude: 79.3629,
+    radius: 8000,
+    confidence: 0.92,
+    species: ["Seer Fish", "Red Snapper", "Kingfish"],
+    depth: 60
+  },
+  {
+    id: 4,
+    name: "Tuticorin Offshore",
+    latitude: 8.8047,
+    longitude: 78.1848,
+    radius: 6000,
+    confidence: 0.73,
+    species: ["Pomfret", "Mackerel", "Flying Fish"],
+    depth: 35
+  },
+  {
+    id: 5,
+    name: "Kanyakumari Deep Sea",
+    latitude: 8.0883,
+    longitude: 77.4885,
+    radius: 7000,
+    confidence: 0.88,
+    species: ["Tuna", "Marlin", "Sailfish"],
+    depth: 120
+  }
+];
 
 // Get fishing predictions
 router.post('/', async (req, res) => {
   try {
     const { species, timeRange, confidence, bounds } = req.body;
     
-    // Get fishing zones within bounds if provided
-    let zones = await db.select().from(fishingZones);
+    let zones = [...mockZones];
     
+    // Filter by bounds if provided
     if (bounds) {
       zones = zones.filter(zone => 
         zone.latitude >= bounds.south && 

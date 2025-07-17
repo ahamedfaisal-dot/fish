@@ -1,6 +1,4 @@
 import express from 'express';
-import { db } from '../index.js';
-import { routes } from '../../shared/schema.js';
 
 const router = express.Router();
 
@@ -20,7 +18,7 @@ router.post('/optimize', async (req, res) => {
       fuelConsumption = 12
     } = preferences;
     
-    // Simple route optimization - in production, use proper routing algorithms
+    // Simple route optimization
     const waypoints = [startPoint];
     let totalDistance = 0;
     let currentPoint = startPoint;

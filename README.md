@@ -183,3 +183,8 @@ npm run dev
 | `npm run db:push`   | Push Drizzle migrations to PostgreSQL    |
 | `npm run db:seed`   | Seed initial data                        |
 | `npm run typecheck` | TypeScript validation                    |
+
+
+
+### to see the full output 
+watch :  https://youtu.be/a8K5KV6XQqo?si=oT3PTbERn1xqIipB

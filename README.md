@@ -150,31 +150,30 @@ Welcome to the **Smart Fishing Route Optimization Platform** – a comprehensive
 git clone <your-repository-url>
 cd smart-fishing-platform
 Install Dependencies
-##2. Install Dependencies
+### 2. Install Dependencies
 
 npm install  # or yarn install
 
-##3. Configure Environment Variables
+### 3. Configure Environment Variables
 Create a .env file in the root and add:
 
 DATABASE_URL="postgresql://user:password@host:port/database"
 GOOGLE_GEMINI_API_KEY="your_gemini_api_key"
 # Add other keys as needed
-##4. Setup & Migrate the Database
+### 4. Setup & Migrate the Database
 Ensure PostgreSQL is running and accessible, then run:
 
 npm run db:push
 
-##5. Seed Sample Data (Optional)
+### 5. Seed Sample Data (Optional)
 
 npm run db:seed
 
-##6. Run the Application
+### 6. Run the Application
 
 npm run dev
 👉 Open your browser and visit: http://localhost:5000
 
-##tech stacks
 
 | Command             | Description                              |
 | ------------------- | ---------------------------------------- |
